@@ -1,0 +1,46 @@
+debug: true
+logging:
+  file:
+    name: logs/spring-boot-application.log
+  level:
+    com:
+      lsit: DEBUG
+    org:
+      springframework:
+        boot: DEBUG
+    root: INFO
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n'
+    file: '%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n'
+
+spring:
+  application:
+    name: DBOCW-V2
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: rootDB@24
+    url: jdbc:mysql://localhost:3306/dbocw-v2
+    username: root
+  jpa:
+    format-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        use_sql_comments: true
+    show-sql: true
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+      enabled: true
+
+server:
+  port: 8443
+  ssl:
+    enabled: true
+    key-store: classpath:keystore.p12  # Keystore path
+    key-store-password: 123456789   # Replace with your keystore password
+    key-store-type: PKCS12
+    key-alias: tomcat
